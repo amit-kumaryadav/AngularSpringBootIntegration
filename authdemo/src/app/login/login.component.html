@@ -1,0 +1,14 @@
+<form [formGroup]="formdata">
+        <!-- <div class="imgcontainer">
+        <img src="assets/images/img_avatar2.png" alt="Avatar" class="avatar">
+        </div> -->
+  
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" formControlName="name" name="name" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" formControlName="password" placeholder="Enter Password" name="password" required>  
+      <button [disabled]="!formdata.valid" (click)="login(formdata.value);" >Login</button>
+    </div>
+  </form>

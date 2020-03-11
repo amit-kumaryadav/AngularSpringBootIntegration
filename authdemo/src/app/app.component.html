@@ -1,0 +1,15 @@
+<div>
+<nav>
+  <div>
+<ul>
+  <li><a routerLink="/event" routerLinkActive="active">Even</a></li>
+  <li><a routerLink="/special" *ngIf="appService.visible" routerLinkActive="active">Special Event</a></li>
+  <li style="float:right" *ngIf="!appService.visible"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+  <li style="float:right" *ngIf="!appService.visible"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+  <li style="float:right" *ngIf="appService.visible"><a style="cursor:pointer" (click)="logoutUser()">Logout</a></li>
+  <li style="float:right" *ngIf="appService.visible"><a style="cursor:pointer">Welcome {{user.userName}}</a></li>
+</ul> 
+</div>
+</nav>
+  <router-outlet></router-outlet>            
+</div>

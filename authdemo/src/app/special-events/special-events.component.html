@@ -1,0 +1,92 @@
+<div class="toogleButton" data-toggle="tooltip" data-placement="top" title={{switchtoggle}}>
+    <label class="switch">
+      <input (ngModelChange)="setToggleStatus();" [(ngModel)]="toogle" type="checkbox" checked>
+      <span class="slider round"></span>
+    </label>
+    </div>
+    <div *ngIf="!toogle" class="container">
+        <h2>Event List</h2>
+        <p>Technical Events</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No:</th>
+              <th>Organization Name</th>
+              <th>Event Name</th>
+              <th>Event Place</th>
+              <th>Event Description</th>
+              <th>Event Link</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let event of eventList; let num = index">
+            <tr class="{{rowColors[num%5]}}">
+              <td>{{num}}</td>
+              <td>{{event.orgname}}</td>
+              <td>{{event.eventName}}</td>
+              <td>{{event.place}}</td>
+              <td>{{event.eventDescription}}</td>
+              <td><a href="{{event.link}}">Festival link</a></td>
+            </tr>      
+          </tbody>
+        </table>
+      </div>
+    
+      <div *ngIf="toogle"  class="container">
+        <form [formGroup]="formdata">
+          <h2>Register new events</h2>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Organization" class="required">Organization Name</label>
+                <input type="text" class="form-control" placeholder="Organization Name" formControlName="orgname" name="orgname" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="eventName" class="required">Event Name</label>
+                <input type="text" class="form-control" placeholder="Event Name"  formControlName="eventName" name="eventName">
+              </div>
+            </div>
+            <!--  col-md-6   -->
+          </div>
+      
+      
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="company" class="required">Event Place</label>
+                <input type="text" class="form-control" placeholder="Event Place"  formControlName="place" name="place">
+              </div>
+      
+      
+            </div>
+            <!--  col-md-6   -->
+      
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="eventDescription" class="required">Event Description</label>
+                <input type="text" class="form-control" placeholder="Event Description" formControlName="eventDescription" name="eventDescription">
+              </div>
+            </div>
+            <!--  col-md-6   -->
+          </div>
+          <!--  row   -->
+      
+      
+          <div class="row">
+            <div class="col-md-12">
+      
+              <div class="form-group">
+                <label for="eventlink" class="required">Event Link <small>Please include http://</small></label>
+                <input type="text" class="form-control"  placeholder="Event Link" formControlName="link" name="link">
+              </div>
+            </div>
+            <!--  col-md-6   -->
+      
+            <!--  col-md-6   -->
+          </div>
+          <!--  row   -->
+          <button (click)="submitForm(formdata.value);" [disabled]="!formdata.valid" type="submit" class="btn btn-primary">Submit</button>
+          <button (click)="resetForm();" type="submit" class="btn btn-primary" style="margin-left: 1%;">Reset</button>
+        </form>
+      </div>
